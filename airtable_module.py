@@ -17,20 +17,42 @@ class DataRouter:
         """
         Filters Airtable.get_all() by assignee passed to Class
         """
-        if self._assignee is None:
-            print('Cannot filter. No assignee passed to class.')
-            return None
         filtered_table = list()
-        for row in self.airtable.get_all():
-            if row['fields']['Editor']['name'] == self._assignee:
-                filtered_table.append(row)
+        for row in self.unfiltered_table:
+            try:
+                if row['fields']['Editor']['name'] == self._assignee:
+                    filtered_table.append(row)
+            except KeyError:
+                print('Blog with id #{} not assigned. Skipping...'
+                      .format(row['id']))
         return filtered_table
 
-    def print_assigned(self, filtered=False):
-        table = self.unfiltered_table
-        if filtered is True:
-            table = self.filtered_table
+    def print_assigned(self, filtered=True):
+        table = self.filtered_table
+        if filtered is False:
+            table = self.unfiltered_table
 
         for i in table:
             print(i)
             print("\n")
+
+    def temp_filter(self):
+        matches = list()
+        for row in self.filtered_table:
+            asana_row = dict()
+            asana_row['title'] = row['fields']['Post Title']
+            asana_row['assignee'] = row['fields']['Editor']['name']
+            try:
+                asana_row['draft'] = row['fields']['Draft']
+            except KeyError:
+                asana_row['draft'] = ""
+                print('Blog with id #{} has no Draft link.'
+                      .format(row['id']))
+            try:
+                asana_row['issue'] = row['fields']['Issue']
+            except KeyError:
+                print('Blog with id #{} has no Issue link.'
+                      .format(row['id']))
+                asana_row['issue'] = ""
+            matches.append(asana_row)
+        return matches
