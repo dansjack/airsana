@@ -1,10 +1,15 @@
 class TableFetcher:
     def __init__(self, airtable, assignee, last_fetched):
+        """
+        Takes an Airtable object and
+        :param airtable:
+        :param assignee:
+        :param last_fetched:
+        """
         self._assignee = assignee
         self._last_fetched = last_fetched
         self._airtable = airtable
         self._unfiltered_table = self.get_matches(self._last_fetched)
-        self._latest_match_time = self.get_latest_match_time()
 
     def get_matches(self, created_time):
         """
@@ -24,7 +29,7 @@ class TableFetcher:
                       .format(row['createdTime']))
         return filtered_table
 
-    def print_matches(self, asana_preview=False):
+    def _print_matches(self, asana_preview=False):
         table = self._unfiltered_table
         if asana_preview:
             table = self.prep_matches()

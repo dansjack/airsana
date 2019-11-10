@@ -27,8 +27,8 @@ class Taskmaster:
         self._client.options['pretty'] = True
         self._client.options['item_limit'] = 50
         self._client.options['fields'] = ["this.name", "this.assignee.name",
-                                         "this.notes", "this.due_on",
-                                         "this.completed"]
+                                          "this.notes", "this.due_on",
+                                          "this.completed"]
 
     def _get_workspace_gid(self):
         for workspace in self._client.workspaces.find_all():
@@ -52,11 +52,8 @@ class Taskmaster:
         """
         self._client.tasks.create_in_workspace(self._workspace_gid,
                                                {'name': name,
-                                               'notes': notes,
-                                               'assignee': self._assignee})
+                                                'notes': notes,
+                                                'assignee': self._assignee})
 
-        print('Task named "{}" added to workspace: {}'.format(name,
-                                                              self._workspace_name))
-
-
-
+        print('Task named "{}" added to workspace: {}'
+              .format(name, self._workspace_name))
