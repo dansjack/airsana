@@ -1,7 +1,7 @@
 from airtable import Airtable
 from asana_taskmaster import Taskmaster
 from airtable_fetcher import TableFetcher
-import credentials
+from credentials import *
 
 
 def main_loop(fetcher, taskmaster):
@@ -16,27 +16,27 @@ def main_loop(fetcher, taskmaster):
 
 def get_latest_datetime():
     with open('created_at.txt', 'r') as date_time:
-        print('GETTING...')
+        print('GETTING last createdTime...')
         return date_time.read()
 
 
 def set_latest_datetime(fetcher):
     latest = fetcher.get_latest_match_time()
-    print('SETTING...')
+    print('SETTING latest createdTime...')
     with open('created_at.txt', 'w') as date_time:
         date_time.write(latest)
 
 
-airtable = Airtable(credentials.jane_at_base,
-                    credentials.jane_at_table,
-                    api_key=credentials.jane_at_api)
+airtable = Airtable(jane_at_base,
+                    jane_at_table,
+                    api_key=jane_at_api)
 
 
 table_fetcher = TableFetcher(airtable,
-                             credentials.jane_at_name,
+                             jane_at_name,
                              get_latest_datetime())
-task_master = Taskmaster(credentials.dan_asana_pat, 'NSC')
+task_master_dan = Taskmaster(dan_asana_pat, 'NSC')
+# task_master_jane = Taskmaster(jane_asana_pat, jane_asana_workspace_name)
 
 set_latest_datetime(table_fetcher)
-
-main_loop(table_fetcher, task_master)
+main_loop(table_fetcher, task_master_dan)
