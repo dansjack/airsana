@@ -16,6 +16,8 @@ class TableFetcher:
         Filters Airtable.get_all() by assignee passed to Class
         """
         filtered_table = list()
+        print('GETTING matches with createdTime later than {}'
+              .format(created_time))
         for row in self._airtable.get_all():
             if row['createdTime'] > created_time:
                 try:
@@ -24,9 +26,6 @@ class TableFetcher:
                 except KeyError:
                     print('Blog with id #{} not assigned. Skipping...'
                           .format(row['id']))
-            else:
-                print('Skipping row with createdTime of {}'
-                      .format(row['createdTime']))
         return filtered_table
 
     def _print_matches(self, asana_preview=False):
