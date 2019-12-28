@@ -1,9 +1,4 @@
-from airtable import Airtable
-from asana_taskmaster import Taskmaster
-from airtable_fetcher import TableFetcher
 from ui import intro
-from util.date import *
-from util.profile import *
 
 
 def main_loop(fetcher, taskmaster):
@@ -20,11 +15,17 @@ def main_loop(fetcher, taskmaster):
 
 
 f, t = intro()
-main_loop(f, t)
+if f is not None:
+    main_loop(f, t)
+print(
+    """
+    *****************************
+    ********** Goodbye **********
+    *****************************
+    """)
 
 
 # jane_test = get_profile('Jane test')
-
 # airtable = Airtable(jane_test['airtable']['base'],
 #                     jane_test['airtable']['table'],
 #                     api_key=jane_test['airtable']['api'])

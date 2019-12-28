@@ -34,7 +34,7 @@ def make_profile():
     profile['airtable']['api'] = input('Airtable API key: ')
     profile['airtable']['base'] = input('Airtable Base: ')
     profile['airtable']['table'] = input('Airtable table name: ')
-    profile['airtable']['created_at'] = ''
+    profile['airtable']['latest_createdTime'] = ''
 
     with open('credentials.json') as f:
         data = json.load(f)

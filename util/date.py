@@ -1,19 +1,25 @@
 from datetime import datetime, timedelta
+import json
 
 
 def get_latest_datetime(days_ago=None):
-    with open('created_at.txt', 'a+') as date_time:
+    ca = ''
+    with open('credentials.json', 'r') as f:
         print('GETTING latest createdTime...')
-        date_time.seek(0)
-        if len(date_time.read()) == 0:
+        data = json.load(f)
+        for prof in data:
+            if prof['name'] == 'Dan test':
+                ca = prof['airtable']['latest_createdTime']
+                break
+
+        if ca is '':
             return '{}T00:00:00.000Z'\
                 .format(datetime.now().date() - timedelta(days=1))
         elif days_ago is not None:
             return '{}T00:00:00.000Z'\
                 .format(datetime.now().date() - timedelta(days=days_ago))
         else:
-            date_time.seek(0)
-            return date_time.read()
+            return ca
 
 
 def set_latest_datetime(fetcher):
@@ -22,5 +28,12 @@ def set_latest_datetime(fetcher):
     for match in fetcher.filtered_table:
         if match['createdTime'] > last_checked:
             last_checked = match['createdTime']
-    with open('created_at.txt', 'w') as date_time:
-        date_time.write(last_checked)
+
+    with open('credentials.json') as f:
+        data = json.load(f)
+        for prof in data:
+            if prof['name'] == 'Dan test':
+                prof['airtable']['latest_createdTime'] = last_checked
+
+    with open('credentials.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)

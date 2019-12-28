@@ -17,7 +17,8 @@ def intro():
         """)
     execute = False
     prof_name = ''
-    while True:
+    cont = True
+    while cont:
         run_existing = input('Run script with existing profile (y/n): ').lower()
         if run_existing[0] == 'y':
             execute = True
@@ -29,6 +30,15 @@ def intro():
                 print('Answer the following 9 questions to create a new '
                       'profile')
                 make_profile()
+                print('New profile created')
+            elif create_new[0] == 'n':
+                print('returning to previous question...')
+                continue
+            elif create_new[0] == 'q':
+                break
+            else:
+                print(
+                    "Did not understand command. Please enter 'y', 'n', or 'q'")
         elif run_existing[0] == 'q':
             break
         else:
@@ -48,3 +58,5 @@ def intro():
                                      profile['asana']['workspace_name'])
         set_latest_datetime(table_fetcher)
         return table_fetcher, task_master
+    else:
+        return None, None
