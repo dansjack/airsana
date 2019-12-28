@@ -1,13 +1,19 @@
 from datetime import datetime, timedelta
 
 
-def get_latest_datetime():
-    with open('created_at.txt', 'r') as date_time:
+def get_latest_datetime(days_ago=None):
+    with open('created_at.txt', 'a+') as date_time:
         print('GETTING latest createdTime...')
+        date_time.seek(0)
+        # print(len(date_time.read()))
         if len(date_time.read()) == 0:
             return '{}T00:00:00.000Z'\
                 .format(datetime.now().date() - timedelta(days=1))
+        elif days_ago is not None:
+            return '{}T00:00:00.000Z'\
+                .format(datetime.now().date() - timedelta(days=days_ago))
         else:
+            # print('fdsfdsf')
             date_time.seek(0)
             return date_time.read()
 

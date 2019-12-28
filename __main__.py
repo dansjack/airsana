@@ -2,7 +2,7 @@ from airtable import Airtable
 from asana_taskmaster import Taskmaster
 from airtable_fetcher import TableFetcher
 from util.date import *
-from util.file import *
+from util.profile import *
 
 
 def main_loop(fetcher, taskmaster):
@@ -17,16 +17,18 @@ def main_loop(fetcher, taskmaster):
     print('Done')
 
 
-p = get_profile('Dan test', 'credentials.json')
-latest = get_latest_datetime()
-airtable = Airtable(p['airtable']['base'], p['airtable']['table'],
-                    api_key=p['airtable']['api'])
+dan_test = get_profile('Dan test')
 
+airtable = Airtable(dan_test['airtable']['base'], dan_test['airtable']['table'],
+                    api_key=dan_test['airtable']['api'])
+table_fetcher = TableFetcher(airtable, dan_test['airtable']['name'],
+                             get_latest_datetime())
+task_master_dan = Taskmaster(dan_test['asana']['pat'],
+                             dan_test['asana']['workspace_name'])
 
-table_fetcher = TableFetcher(airtable, p['airtable']['name'],
-                             latest)
-task_master_dan = Taskmaster(p['asana']['pat'], p['asana']['workspace_name'])
-# task_master_jane = Taskmaster(jane_asana_pat, jane_asana_workspace_name)
+# jane_test = get_profile('Jane test')
+# task_master_jane = Taskmaster(jane_test['asana']['pat'],
+#                              jane_test['asana']['workspace_name'])
 
 set_latest_datetime(table_fetcher)
 main_loop(table_fetcher, task_master_dan)
