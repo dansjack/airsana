@@ -15,6 +15,8 @@ def get_profile(name):
                 profile['asana'] = prof['asana']
                 profile['airtable'] = prof['airtable']
                 break
+    if not profile:
+        return None
     return profile
 
 
@@ -32,16 +34,10 @@ def make_profile():
     profile['airtable']['api'] = input('Airtable API key: ')
     profile['airtable']['base'] = input('Airtable Base: ')
     profile['airtable']['table'] = input('Airtable table name: ')
+    profile['airtable']['created_at'] = ''
 
     with open('credentials.json') as f:
         data = json.load(f)
         data.append(profile)
     with open('credentials.json', 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
-
-
-def has_profile():
-    with open('credentials.json') as f:
-        if len(json.load(f)) == 0:
-            return False
-    return True
