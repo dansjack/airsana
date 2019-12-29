@@ -53,13 +53,10 @@ def initialize_objects(profile, execute):
                             profile['airtable']['table'],
                             api_key=profile['airtable']['api'])
         fetcher = TableFetcher(airtable, profile['airtable']['filter_value'],
-                               get_latest_datetime(profile['name']))
+                               get_latest_datetime(profile['name']), profile[
+                                   'airtable']['match_structure'])
 
-        if len(profile['airtable']['filter']) == 2:  # sub filter exists
-            fetcher.get_matches(profile['airtable']['filter'][0],
-                                profile['airtable']['filter'][1])
-        else:  # no sub filter
-            fetcher.get_matches(profile['airtable']['filter'][0])
+        fetcher.get_matches(profile['airtable']['filter'])
 
         taskmaster = Taskmaster(profile['asana']['pat'],
                                 profile['asana']['workspace_name'])
