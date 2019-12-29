@@ -20,6 +20,20 @@ def get_profile(name):
     return profile
 
 
+def print_profile_names(profile_names):
+    for name in profile_names:
+        print('- {}'.format(name))
+
+
+def get_profile_names():
+    profile_names = []
+    with open('credentials.json') as f:
+        data = json.load(f)
+        for prof in data:
+            profile_names.append(prof['name'])
+    return profile_names
+
+
 def make_profile():
     """
     :return: void. Adds a new profile to credentials.json

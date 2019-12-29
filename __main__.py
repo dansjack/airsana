@@ -1,8 +1,4 @@
-from airtable import Airtable
-from airtable_fetcher import TableFetcher
-from ui import intro, initialize_objects
-from util.date import get_latest_datetime, set_latest_datetime
-from util.profile import get_profile
+from ui import user_select_profile, initialize_objects
 
 
 def main_loop(taskmaster, table_rows, nf_list):
@@ -19,18 +15,19 @@ def main_loop(taskmaster, table_rows, nf_list):
 def main_loop_helper(note_fields, table_row):
     notes = ''
     for note_field in note_fields:
-        notes += '{}: {}\n\n'.format(note_field.capitalize(), table_row[note_field])
+        notes += '{}: {}\n\n'.format(note_field.capitalize(),
+                                     table_row[note_field])
     return notes
 
 
-profile, is_execute = intro()
-struct = profile['airtable']['match_structure']
-nf_list = profile['asana']['note_fields']
-f, t = initialize_objects(profile, is_execute)
-prepped_matches = f.prep_matches()
+profile = user_select_profile()
+if profile is not None:
+    nf_list = profile['asana']['note_fields']
+    f, t = initialize_objects(profile)
+    prepped_matches = f.prep_matches()
+    if f is not None:
+        main_loop(t, prepped_matches, nf_list)
 
-if f is not None:
-    main_loop(t, prepped_matches, nf_list)
 print("""
     *****************************
     ********** Goodbye **********
