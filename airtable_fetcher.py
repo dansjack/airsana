@@ -1,4 +1,3 @@
-            try:
 
 
 class TableFetcher:
@@ -44,13 +43,6 @@ class TableFetcher:
                 table_row['id']))
             return False
 
-    def print_matches(self):
-        """For testing purposes only"""
-        table = self._filtered_table
-        for i in table:
-            print(i)
-            print("\n")
-
     def prep_matches(self):
         if self._filtered_table:
             return [self.prep_match_helper(row) for row in self._filtered_table]
@@ -75,21 +67,19 @@ class TableFetcher:
             elif 'title' in field.lower() or 'headline' in field.lower():
                 f_lower = 'title'
 
-            if sub_field:
-                try:
+            try:
+                if sub_field:
                     match_row[f_lower] = table_row['fields'][field][sub_field]
-                except KeyError:  # No value at field/sub-field for this match
-                    print(
-                        'Blog with id #{} has no value at: ["{}"]["{}"]...'.format(
-                            table_row['id'], field, sub_field))
-                    match_row[f_lower] = ""
-            else:
-                try:
+                else:
                     match_row[f_lower] = table_row['fields'][field]
-                except KeyError:  # No value at field for this match
-                    print('Blog with id #{} has no value at: ["{}"]...'.format(
-                        table_row['id'], field))
-                    match_row[f_lower] = ""
+            except KeyError:  # No value at field for this match
+                if sub_field:
+                    print('Blog with id #{} has no value at: ["{}"]["{}"]...'.
+                          format(table_row['id'], field, sub_field))
+                else:
+                    print('Blog with id #{} has no value at: ["{}"]...'.
+                          format(table_row['id'], field))
+                match_row[f_lower] = ""
         return match_row
 
     @property

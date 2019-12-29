@@ -49,6 +49,7 @@ class Taskmaster:
         :param notes: Notes for the task
         :return: void. Posts a task to the object's workspace
         """
+        # TODO: Add "due on" dates. Pull from Airtable
         self._client.tasks.create_in_workspace(self._workspace_gid,
                                                {'name': name,
                                                 'notes': notes,
