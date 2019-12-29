@@ -2,13 +2,13 @@ from datetime import datetime, timedelta
 import json
 
 
-def get_latest_datetime(days_ago=None):
+def get_latest_datetime(profile_name, days_ago=None):
     ca = ''
     with open('credentials.json', 'r') as f:
         print('GETTING latest createdTime...')
         data = json.load(f)
         for prof in data:
-            if prof['name'] == 'Dan test':
+            if prof['name'] == profile_name:
                 ca = prof['airtable']['latest_createdTime']
                 break
 
@@ -22,8 +22,8 @@ def get_latest_datetime(days_ago=None):
             return ca
 
 
-def set_latest_datetime(fetcher):
-    last_checked = get_latest_datetime()
+def set_latest_datetime(fetcher, profile_name):
+    last_checked = get_latest_datetime(profile_name)
     print('SETTING latest createdTime...')
     for match in fetcher.filtered_table:
         if match['createdTime'] > last_checked:
@@ -32,7 +32,7 @@ def set_latest_datetime(fetcher):
     with open('credentials.json') as f:
         data = json.load(f)
         for prof in data:
-            if prof['name'] == 'Dan test':
+            if prof['name'] == profile_name:
                 prof['airtable']['latest_createdTime'] = last_checked
 
     with open('credentials.json', 'w', encoding='utf-8') as f:

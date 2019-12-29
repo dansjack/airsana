@@ -30,11 +30,12 @@ def make_profile():
     profile['asana']['id'] = input('Asana ID: ')
     profile['asana']['workspace_id'] = input('Asana workspace ID: ')
     profile['asana']['workspace_name'] = input('Asana workspace name: ')
-    profile['airtable']['name'] = input('Airtable profile owner name: ')
+    profile['airtable']['filter_value'] = input('Airtable profile owner name: ')
     profile['airtable']['api'] = input('Airtable API key: ')
     profile['airtable']['base'] = input('Airtable Base: ')
     profile['airtable']['table'] = input('Airtable table name: ')
-    profile['airtable']['latest_createdTime'] = ''
+    profile['airtable']['latest_createdTime'] = ''  # TODO: get user input
+    profile['airtable']['filter'] = ''  # TODO: get user input
 
     with open('credentials.json') as f:
         data = json.load(f)
