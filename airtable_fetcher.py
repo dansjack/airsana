@@ -58,11 +58,8 @@ class TableFetcher:
             sub_field = None
             if len(fields) == 2:
                 sub_field = fields[1]
-
             f_lower = field.lower()
-            if sub_field == 'name':
-                f_lower = 'assignee'
-            elif 'title' in field.lower() or 'headline' in field.lower():
+            if 'title' in field.lower() or 'headline' in field.lower():
                 f_lower = 'title'
             try:
                 if sub_field:
