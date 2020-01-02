@@ -15,9 +15,7 @@ class TableFetcher:
         self._match_structure = match_structure.values()
 
     def get_matches(self, fields):
-        """
-        Filters Airtable.get_all() by assignee passed to Class
-        """
+        """Filters Airtable.get_all() by assignee passed to Class """
         print('GETTING matches with createdTime later than {}'.format(
             self._last_fetched))
         field_name = fields[0]
@@ -66,7 +64,6 @@ class TableFetcher:
                 f_lower = 'assignee'
             elif 'title' in field.lower() or 'headline' in field.lower():
                 f_lower = 'title'
-
             try:
                 if sub_field:
                     match_row[f_lower] = table_row['fields'][field][sub_field]

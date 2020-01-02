@@ -48,8 +48,18 @@ def make_profile():
     profile['airtable']['api'] = input('Airtable API key: ')
     profile['airtable']['base'] = input('Airtable Base: ')
     profile['airtable']['table'] = input('Airtable table name: ')
-    profile['airtable']['latest_createdTime'] = ''  # TODO: get user input
-    profile['airtable']['filter'] = ''  # TODO: get user input
+    profile['airtable']['latest_createdTime'] = input(
+        'How far back through Airtable do you want to search?\nEnter a date of '
+        'the form YYYY-MM-DD or press Enter to set the date to yesterday: ')
+    profile['airtable']['filter'] = [input(
+        'How do you want to filter the Airtable calendar?\nEnter a category '
+        'to filter rows by (e.g. Author, Editor, etc)'), "name"]
+    # TODO: is asana user same as airtable user?
+    profile['airtable']['match_structure']['title'] = input('')  # TODO: get user
+    # input
+    profile['airtable']['match_structure']['assignee'] = ''
+    #  add indiviudal fields to match_structure
+    profile['asana']['note_fields'] = ''  # TODO: get user input
 
     with open('credentials.json') as f:
         data = json.load(f)

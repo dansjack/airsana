@@ -42,7 +42,6 @@ def user_select_profile():
 
 
 def initialize_objects(profile):
-    print(profile)
     airtable = Airtable(profile['airtable']['base'],
                         profile['airtable']['table'],
                         api_key=profile['airtable']['api'])
