@@ -79,3 +79,4 @@ pip install airtable-python-wrapper
   ```
 
 6. Go to your Asana workspace to see that the tasks have been uploaded and assigned to you
+![alt text](https://github.com/dansjack/airtable-to-asana/blob/master/images/asana_workspace.png "Logo Title Text 1")
