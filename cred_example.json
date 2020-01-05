@@ -1,0 +1,32 @@
+[
+  {
+        "name": "TEST PROFILE",
+        "asana": {
+            "name": "NAME",
+            "pat": "ASANA PAT",
+            "id": "ASANA ID",
+            "workspace_id": "ASANA WORKSPACE ID",
+            "workspace_name": "ASANA WORKSPACE NAME",
+            "note_fields": [
+                "section",
+                "status"
+            ]
+        },
+        "airtable": {
+            "filter_value": "Cameron Toth",
+            "api": "AIRTABLE API",
+            "base": "AIRTABLE BASE",
+            "table": "Content production",
+            "latest_createdTime": "2015-06-05T23:08:42.000Z",
+            "filter": [
+                "Author",
+                "name"
+            ],
+            "match_structure": {
+                "title": "Headline",
+                "section": "Section",
+                "status": "Status"
+            }
+        }
+    }
+]

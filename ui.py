@@ -36,7 +36,7 @@ def user_select_profile():
             print('New profile created')
         elif run_existing[0] == '3':  # Run with example profile
             print('Running script with test profile...')
-            return get_profile('TEST PROFILE', 'credentials_test.json')
+            return get_profile('TEST PROFILE', 'cred_example.json')
         elif run_existing[0] == 'q':
             break
         else:
