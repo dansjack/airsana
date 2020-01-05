@@ -1,45 +1,30 @@
-
-
 class TableMatcher:
-    def __init__(self, airtable, assignee, last_fetched, match_structure):
+    def __init__(self, airtable, profile, last_fetched):
         """
-        Takes an Airtable object and
-        :param airtable:
-        :param assignee:
-        :param last_fetched:
+        Takes an Airtable object and filters the rows by a filter value and
+        by createdTime. It then creates a list of dicts to send to Asana
+        :param airtable: Airtable object. from airtable API
+        :param profile: dict. a profile containing the user's credentials and
+        other data necessary to transfer the data
+        :param last_fetched: string. the created time of the row fetched the
+        last time the program was ran (or what the user set it to in
+        credentials.json, manually)
         """
-        self._assignee = assignee
+        self._profile = profile
+        self._match_structure = self._profile['airtable'][
+            'match_structure'].values()
         self._last_fetched = last_fetched
         self._airtable = airtable
-        self._filtered_table = []
-        self._match_structure = match_structure.values()
+        self._filtered_table = self._get_matches()
 
-    def get_matches(self, fields):
+    def _get_matches(self):
         """Filters Airtable.get_all() by assignee passed to Class """
         print('GETTING matches with createdTime later than {}'.format(
             self._last_fetched))
-        field_name = fields[0]
-        sub_field = None
-        if len(fields) == 2:
-            sub_field = fields[1]
-
-        local_filtered = [row for row in self._airtable.get_all() if row[
-            'createdTime'] > self._last_fetched]
-
-        self._filtered_table = [row for row in local_filtered if
-                                self.get_matches_helper(row, field_name,
-                                                        sub_field)]
-
-    def get_matches_helper(self, table_row, field_name, sub_field):
-        try:
-            if sub_field and table_row['fields'][field_name][
-                sub_field] == self._assignee or table_row['fields'][field_name]\
-                    == self._assignee:
-                return True
-        except KeyError:  # blog not assigned
-            print('Blog with id #{} not assigned. Skipping...'.format(
-                table_row['id']))
-            return False
+        return [row for row in self._airtable.search(
+            self._profile['airtable']['filter'][0],
+            self._profile['airtable']['filter_value']) if
+            row['createdTime'] > self._last_fetched]
 
     def prep_matches(self):
         if self._filtered_table:
@@ -50,7 +35,7 @@ class TableMatcher:
         """
         Catch any missing data in one row of an Airtable calendar
         :param table_row: dict<String:String>. an airtable calendar row
-        :return: dict<String:String>. Match object ready to push to Asana
+        :return: dict<String:String>. Match ready to push to Asana
         """
         match_row = dict()  # TODO: Get profile object inside fetcher
         for field in self._match_structure:

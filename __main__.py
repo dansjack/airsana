@@ -1,4 +1,4 @@
-#  /usr/bin/python3
+# /usr/bin/python3
 from ui import user_select_profile, initialize_objects
 
 
