@@ -27,7 +27,10 @@ pip install asana
 ```sh
 pip install airtable-python-wrapper
 ```
-- An [Airtable account](https://airtable.com/). You will need your Content calendar api key and base id. See [Airtable's API documentation](https://airtable.com/api) on how to find this information for your Content calendar. The test script pulls data from the Content production table within the Content calendar base
+- An [Airtable account](https://airtable.com/). You will need your Content calendar api key and base id. See [Airtable's API documentation](https://airtable.com/api) on how to find this information for your Content calendar.
+
+ The test script pulls data from the Content production table within the Content calendar base:
+ ![alt text](https://github.com/dansjack/airtable-to-asana/blob/master/images/airtable_calendar.png "Airtable calendar")
 
 - An [Asana account](https://app.asana.com/). You will need to get your Personal Access Token (PAT), user ID ([Click here once logged in](https://app.asana.com/api/1.0/users)) and workspace name ([Click here once logged in](https://app.asana.com/api/1.0/workspaces))
 
@@ -79,3 +82,4 @@ pip install airtable-python-wrapper
   ```
 
 6. Go to your Asana workspace to see that the tasks have been uploaded and assigned to you
+![alt text](https://github.com/dansjack/airtable-to-asana/blob/master/images/asana_workspace.png "Asana workspace")
