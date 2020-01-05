@@ -6,8 +6,7 @@ class Taskmaster:
         """
         Connects to an Asana user's workspace and adds tasks to it
 
-        :param pat: Asana Personal Access Token
-        :param workspace_name: The workspace name to add a task to
+        :param profile: dict. User profile object
         """
         self._profile = profile
         self._pat = self._profile['asana']['pat']

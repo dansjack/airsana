@@ -39,7 +39,6 @@ def user_select_profile():
             print('New profile created')
         elif run_existing[0] == '3':  # Run with example profile
             print('Running script with test profile...')
-            print(Path(__file__).parent)
             return get_profile('TEST PROFILE', (Path(__file__).parent /
                                "./cred_example.json").resolve())
         elif run_existing[0] == 'q':

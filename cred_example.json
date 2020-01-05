@@ -2,10 +2,9 @@
   {
         "name": "TEST PROFILE",
         "asana": {
-            "name": "NAME",
+            "name": "ASANA USERNAME",
             "pat": "ASANA PAT",
             "id": "ASANA ID",
-            "workspace_id": "ASANA WORKSPACE ID",
             "workspace_name": "ASANA WORKSPACE NAME",
             "note_fields": [
                 "section",

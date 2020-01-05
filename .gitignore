@@ -2,4 +2,3 @@
 venv/
 __pycache__/
 credentials.json
-created_at.txt
