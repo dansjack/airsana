@@ -1,3 +1,4 @@
+#  /usr/bin/python3
 from ui import user_select_profile, initialize_objects
 
 
@@ -20,16 +21,17 @@ def main_loop_helper(note_fields, table_row):
     return notes
 
 
-profile = user_select_profile()
-if profile is not None:
-    nf_list = profile['asana']['note_fields']
-    f, t = initialize_objects(profile)
-    prepped_matches = f.prep_matches()
-    if f is not None:
-        main_loop(t, prepped_matches, nf_list)
+if __name__ == '__main__':
+    profile = user_select_profile()
+    if profile is not None:
+        nf_list = profile['asana']['note_fields']
+        f, t = initialize_objects(profile)
+        prepped_matches = f.prep_matches()
+        if f is not None:
+            main_loop(t, prepped_matches, nf_list)
 
-print("""
-    *****************************
-    ********** Goodbye **********
-    *****************************
-    """)
+    print("""
+        *****************************
+        ********** Goodbye **********
+        *****************************
+        """)

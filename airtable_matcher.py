@@ -1,6 +1,6 @@
 
 
-class TableFetcher:
+class TableMatcher:
     def __init__(self, airtable, assignee, last_fetched, match_structure):
         """
         Takes an Airtable object and
@@ -52,27 +52,16 @@ class TableFetcher:
         :param table_row: dict<String:String>. an airtable calendar row
         :return: dict<String:String>. Match object ready to push to Asana
         """
-        match_row = dict()
-        for fields in self._match_structure:
-            field = fields[0]
-            sub_field = None
-            if len(fields) == 2:
-                sub_field = fields[1]
+        match_row = dict()  # TODO: Get profile object inside fetcher
+        for field in self._match_structure:
             f_lower = field.lower()
             if 'title' in field.lower() or 'headline' in field.lower():
                 f_lower = 'title'
             try:
-                if sub_field:
-                    match_row[f_lower] = table_row['fields'][field][sub_field]
-                else:
-                    match_row[f_lower] = table_row['fields'][field]
+                match_row[f_lower] = table_row['fields'][field]
             except KeyError:  # No value at field for this match
-                if sub_field:
-                    print('Blog with id #{} has no value at: ["{}"]["{}"]...'.
-                          format(table_row['id'], field, sub_field))
-                else:
-                    print('Blog with id #{} has no value at: ["{}"]...'.
-                          format(table_row['id'], field))
+                print('Blog with id #{} has no value at: ["{}"]...'.format(
+                    table_row['id'], field))
                 match_row[f_lower] = ""
         return match_row
 

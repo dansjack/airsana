@@ -1,13 +1,14 @@
 import json
 
 
-def get_profile(name):
+def get_profile(name, file):
     """
     :param name: profile name
+    :param file: file name e.g. credentials.json
     :return: dict of selected profile
     """
     profile = {}
-    with open('credentials.json') as f:
+    with open(file) as f:
         data = json.load(f)
         for prof in data:
             if prof['name'] == name:
@@ -25,18 +26,18 @@ def print_profile_names(profile_names):
         print('- {}'.format(name))
 
 
-def get_profile_names():
+def get_profile_names(file):
     profile_names = []
-    with open('credentials.json') as f:
+    with open(file) as f:
         data = json.load(f)
         for prof in data:
             profile_names.append(prof['name'])
     return profile_names
 
 
-def make_profile():
+def make_profile(file):
     """
-    :return: void. Adds a new profile to credentials.json
+    :return: void. Adds a new profile to file.json
     """
     profile = {'name': input('Profile name: '), 'asana': {}, 'airtable': {}}
     profile['asana']['name'] = input("Asana profile owner name: ")
@@ -53,16 +54,18 @@ def make_profile():
         'the form YYYY-MM-DD or press Enter to set the date to yesterday: ')
     profile['airtable']['filter'] = [input(
         'How do you want to filter the Airtable calendar?\nEnter a category '
-        'to filter rows by (e.g. Author, Editor, etc)'), "name"]
-    # TODO: is asana user same as airtable user?
-    profile['airtable']['match_structure']['title'] = input('')  # TODO: get user
-    # input
-    profile['airtable']['match_structure']['assignee'] = ''
-    #  add indiviudal fields to match_structure
+        'to filter rows by (e.g. Author, Editor, etc).\n  - Note: This '
+        'category must have a sub-category of "name".'), "name"]
+    # TODO: What is the category name for a row title in Airtable? (e.g. Post
+    #  Title, Headline).
+    profile['airtable']['match_structure'] = {}
+    profile['airtable']['match_structure']['title'] = input(
+        'What is the category name for a row title in Airtable? (e.g. Post '
+        'Title, Headline)')
     profile['asana']['note_fields'] = ''  # TODO: get user input
 
-    with open('credentials.json') as f:
+    with open(file) as f:
         data = json.load(f)
         data.append(profile)
-    with open('credentials.json', 'w', encoding='utf-8') as f:
+    with open(file, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
