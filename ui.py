@@ -12,7 +12,7 @@ def user_select_profile():
     file = (Path(__file__).parent / "./credentials.json").resolve()
     print("""  
         **************************************
-        ********** Airtable to Asana *********
+        *************   Airsana   ************
         **************************************
         
         Enter 'q' to quit at any time
