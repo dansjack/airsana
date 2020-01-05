@@ -2,15 +2,16 @@ import asana
 
 
 class Taskmaster:
-    def __init__(self, pat, workspace_name):
+    def __init__(self, profile):
         """
         Connects to an Asana user's workspace and adds tasks to it
 
         :param pat: Asana Personal Access Token
         :param workspace_name: The workspace name to add a task to
         """
-        self._pat = pat
-        self._workspace_name = workspace_name
+        self._profile = profile
+        self._pat = self._profile['asana']['pat']
+        self._workspace_name = self._profile['asana']['workspace_name']
         self._client = asana.Client().access_token(self._pat)
         self._set_client_options()
         self._workspace_gid = self._get_workspace_gid()

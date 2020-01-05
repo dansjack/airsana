@@ -27,18 +27,18 @@ def get_latest_datetime(profile_name, file, days_ago=None):
             return created_time
 
 
-def set_latest_datetime(fetcher, profile_name):
-    last_checked = get_latest_datetime(profile_name, 'credentials.json')
+def set_latest_datetime(fetcher, profile_name, file):
+    last_checked = get_latest_datetime(profile_name, file)
     print('SETTING latest createdTime...')
     for match in fetcher.filtered_table:
         if match['createdTime'] > last_checked:
             last_checked = match['createdTime']
 
-    with open('credentials.json') as f:
+    with open(file) as f:
         data = json.load(f)
         for prof in data:
             if prof['name'] == profile_name:
                 prof['airtable']['latest_createdTime'] = last_checked
 
-    with open('credentials.json', 'w', encoding='utf-8') as f:
+    with open(file, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=4)
