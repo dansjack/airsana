@@ -41,7 +41,7 @@ pip install airtable-python-wrapper
  The test script pulls data from the Content production table within the Content calendar base:
  ![picture of Airtable calendar](https://github.com/dansjack/airsana/blob/master/images/airtable_calendar.png "Airtable calendar")
 
-- An [Asana account](https://app.asana.com/). You will need to get your Personal Access Token (PAT), user ID ([Click here once logged in](https://app.asana.com/api/1.0/users)) and workspace name ([Click here once logged in](https://app.asana.com/api/1.0/workspaces))
+- An [Asana account](https://asana.com/). You will need to get your Personal Access Token (PAT), user ID ([Click here once logged in](https://app.asana.com/api/1.0/users)) and workspace name ([Click here once logged in](https://app.asana.com/api/1.0/workspaces))
 
 ### Installation & Usage
 1. Clone the repo
