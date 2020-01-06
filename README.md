@@ -1,8 +1,7 @@
 # airsana
 
 ## About
-A tool to automatically add a task to a user's Asana workspace when a blog post is assigned to that user in an Airtable calendar
-
+Airsana takes a content calendar object from the Airtable API, finds only the rows assigned to a certain person, and sends that information to the Asana API which creates tasks in that person's Asana workspace.
 This is a work in progress. See below for details on how to run this script with example data, or create your own profile after looking at the example below
 
 ### Details
