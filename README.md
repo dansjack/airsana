@@ -41,7 +41,7 @@ pip install airtable-python-wrapper
  The test script pulls data from the Content production table within the Content calendar base:
  ![picture of Airtable calendar](https://github.com/dansjack/airsana/blob/master/images/airtable_calendar.png "Airtable calendar")
 
-- An [Asana account](https://asana.com/). You will need to get your Personal Access Token (PAT), user ID ([Click here once logged in](https://app.asana.com/api/1.0/users)) and workspace name ([Click here once logged in](https://app.asana.com/api/1.0/workspaces))
+- An [Asana account](https://asana.com/). You will need to get your Personal Access Token (PAT), user ID, and workspace name. User ID and workspace name can be found at the following links once logged in, respectively: [https://app.asana.com/api/1.0/users](https://app.asana.com/api/1.0/users), [https://app.asana.com/api/1.0/workspaces](https://app.asana.com/api/1.0/workspaces). You can find instructions on how to get a PAT here: [https://developers.asana.com/docs/#authentication-quick-start](https://developers.asana.com/docs/#authentication-quick-start)
 
 ### Installation & Usage
 1. Clone the repo
@@ -58,7 +58,7 @@ pip install airtable-python-wrapper
     ```
 4. When prompted, enter ```3``` to run the script from the example profile in ```cred_example.json``` (given you filled in the required fields), or enter ```1``` if you have an existing profile inside ```credentials.json```
 
-  ```sh
+  ```
   **************************************
   *************   Airsana   ************
   **************************************
@@ -74,7 +74,7 @@ pip install airtable-python-wrapper
 
 5. The script will run and give status updates before exiting:
 
-  ```sh
+  ```
   Running script with test profile...
   GETTING latest createdTime...
   GETTING matches with createdTime later than 2015-06-05T23:08:42.000Z
@@ -94,6 +94,8 @@ pip install airtable-python-wrapper
 ![picture of Asana workspace](https://github.com/dansjack/airsana/blob/master/images/asana_workspace.png "Asana workspace")
 
 #### Profiles
+A profile is where your Asana and Airtable credentials are stored, along with other important info like what you want to filter table rows by and how you want to structure the data being sent to the Asana API  
+
 Example profile:
 ```sh
 {   
