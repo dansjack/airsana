@@ -37,7 +37,7 @@ class TableMatcher:
         :param table_row: dict<String:String>. an airtable calendar row
         :return: dict<String:String>. Match ready to push to Asana
         """
-        match_row = dict()  # TODO: Get profile object inside fetcher
+        match_row = dict()  # TODO: Get profile object inside matcher
         for field in self._match_structure:
             f_lower = field.lower()
             if 'title' in field.lower() or 'headline' in field.lower():

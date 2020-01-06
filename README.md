@@ -1,10 +1,9 @@
 # airsana
 
 ## About
-A tool to automatically add a task to a user's Asana workspace when a blog post is
-assigned to that user in an Airtable calendar
+A tool to automatically add a task to a user's Asana workspace when a blog post is assigned to that user in an Airtable calendar
 
-This is a work in progress. See below for details on how to run this script with example data
+This is a work in progress. See below for details on how to run this script with example data, or create your own profile after looking at the example below
 
 ### Details
 The TableMatcher object takes in an Airtable object from the Airtable API. The TableMatcher then filters out rows that don't match the filter value provided by
@@ -85,3 +84,53 @@ pip install airtable-python-wrapper
 
 6. Go to your Asana workspace to see that the tasks have been uploaded and assigned to you
 ![picture of Asana workspace](https://github.com/dansjack/airsana/blob/master/images/asana_workspace.png "Asana workspace")
+
+#### Profiles
+Here is the example profile:
+```sh
+{   
+    "name": "TEST PROFILE",
+    "asana": {
+        "name": "ASANA USERNAME",
+        "pat": "ASANA PAT",
+        "id": "ASANA ID",
+        "workspace_name": "ASANA WORKSPACE NAME",
+        "note_fields": [
+            "section",
+            "status"
+        ]
+    },
+    "airtable": {
+        "filter_value": "Cameron Toth",
+        "api": "AIRTABLE API",
+        "base": "AIRTABLE BASE",
+        "table": "Content production",
+        "latest_createdTime": "2015-06-05T23:08:42.000Z",
+        "filter": [
+            "Author",
+            "name"
+        ],
+        "match_structure": {
+            "title": "Headline",
+            "section": "Section",
+            "status": "Status"
+        }
+    }
+}
+```
+##### profile fields
+* name: Name of this profile   
+* asana: Asana account details
+  * name: username
+  * pat: Personal Access Token (PAT)
+  * id: user id
+  * workspace_name: Name of user's workspace
+  * note_fields: list of the Airtable object fields you want to send to Asana
+* airtable: Airtable account details
+  * filter_value: value of the filter field
+  * api: API key
+  * base: base id
+  * table: name of a table belonging to the base
+  * latest_createdTime: the created time of the row fetched the last time the program was ran (or what the user set it to in credentials.json, manually)
+  * filter: the Airtable field to filter the Airtable object by
+  * match_structure: structure of the dicts returned by ```TableMatcher.prep_matches()```
