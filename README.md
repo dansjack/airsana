@@ -11,6 +11,14 @@ the current profile. After getting all rows that match, the TableMatcher makes a
 The Taskmaster object's ```add_task()``` method takes a dict from that list and hands it to the Asana API's ```Client.create_in_workspace()``` method which makes a
 task in the appropriate Asana workspace
 
+### Development plans
+- [ ] Improve README
+- [ ] Add test module
+- [ ] Search for and remove any redundancies between project and Airtable/Asana APIs
+- [ ] Complete ui:
+  - [ ] profile maker walkthrough
+  - [ ] exception handling for improper inputs
+
 ## Getting started
 
 ### Prerequisites
@@ -86,7 +94,7 @@ pip install airtable-python-wrapper
 ![picture of Asana workspace](https://github.com/dansjack/airsana/blob/master/images/asana_workspace.png "Asana workspace")
 
 #### Profiles
-Here is the example profile:
+Example profile:
 ```sh
 {   
     "name": "TEST PROFILE",
