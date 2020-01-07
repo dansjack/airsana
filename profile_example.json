@@ -12,15 +12,12 @@
             ]
         },
         "airtable": {
-            "filter_value": "Cameron Toth",
             "api": "AIRTABLE API",
             "base": "AIRTABLE BASE",
             "table": "Content production",
             "latest_createdTime": "2015-06-05T23:08:42.000Z",
-            "filter": [
-                "Author",
-                "name"
-            ],
+            "filter": "Author",
+            "filter_value": "Cameron Toth",
             "match_structure": {
                 "title": "Headline",
                 "section": "Section",

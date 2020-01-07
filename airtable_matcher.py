@@ -22,7 +22,7 @@ class TableMatcher:
         print('GETTING matches with createdTime later than {}'.format(
             self._last_fetched))
         return [row for row in self._airtable.search(
-            self._profile['airtable']['filter'][0],
+            self._profile['airtable']['filter'],
             self._profile['airtable']['filter_value']) if
             row['createdTime'] > self._last_fetched]
 

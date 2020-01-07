@@ -1,16 +1,8 @@
 from pathlib import Path
-
-from airtable import Airtable
-
-from airtable_matcher import TableMatcher
-from asana_taskmaster import Taskmaster
-from util.date import *
 from util.profile import *
 
 
-def user_select_profile():
-    file = (Path(__file__).parent / "./profiles.json").resolve()
-    print(file)
+def user_select_profile(file):
     print("""  
         **************************************
         *************   Airsana   ************
@@ -54,16 +46,4 @@ def user_select_profile():
                   "or 'q'...")
 
 
-def initialize_objects(profile):
-    file = (Path(__file__).parent / "./profiles.json").resolve()
-    if profile['name'] == 'TEST PROFILE':  # ensures proper imports in terminal
-        file = (Path(__file__).parent / "./profile_example.json").resolve()
-    airtable = Airtable(profile['airtable']['base'],
-                        profile['airtable']['table'],
-                        api_key=profile['airtable']['api'])
-    fetcher = TableMatcher(airtable, profile,
-                           get_latest_datetime(profile['name'], file))
 
-    taskmaster = Taskmaster(profile)
-    set_latest_datetime(fetcher, profile['name'], file)
-    return fetcher, taskmaster
