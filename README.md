@@ -2,7 +2,7 @@
 
 ## Table of Contents
 * [About](#about)
-  * [Details](#about)
+  * [Details](#details)
   * [Development Plans](#development-plans)
 * [Getting Started](#getting-started)
   * [Prerequisites](#prerequisites)
