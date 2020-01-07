@@ -60,7 +60,7 @@ task in the appropriate Asana workspace
   ```
 - An [Airtable account](https://airtable.com/). You will need your Content calendar api key and base id. See [Airtable's API documentation](https://airtable.com/api) on how to find this information for your Content calendar
 
- The test script pulls data from the Content production table within the Content calendar base:
+  The test script pulls data from the Content production table within the Content calendar base:
    ![picture of Airtable calendar](https://github.com/dansjack/airsana/blob/master/images/airtable_calendar.png "Airtable calendar")
 
 - An [Asana account](https://asana.com/). You will need to get your Personal Access Token (PAT), user ID, and workspace name. User ID and workspace name can be found at the following links once logged in, respectively: [https://app.asana.com/api/1.0/users](https://app.asana.com/api/1.0/users), [https://app.asana.com/api/1.0/workspaces](https://app.asana.com/api/1.0/workspaces). You can find instructions on how to get a PAT here: [https://developers.asana.com/docs/#authentication-quick-start](https://developers.asana.com/docs/#authentication-quick-start)
@@ -72,45 +72,43 @@ task in the appropriate Asana workspace
     ```
 2. Fill in the fields (the ones in all caps) of ```profile_example.json``` or make a new profile in ```profiles.json```
 
- Note: Make sure not to upload any of your sensitive data to Github. Add ```profile_example.json``` and ```profiles.json``` to your ```.gitignore``` if you intend to fill them with sensitive info
+   Note: Make sure not to upload any of your sensitive data to Github. Add ```profile_example.json``` and ```profiles.json``` to your ```.gitignore``` if you intend to fill them with sensitive info
 
 3. start the program
     ```sh
     $ python3 airsana
     ```
 4. When prompted, enter ```3``` to run the script from the example profile in ```profile_example.json``` (given you filled in the required fields), or enter ```1``` if you have an existing profile inside ```profiles.json```.  
+   ```
+   **************************************
+   *************   Airsana   ************
+   **************************************
 
-  ```
-  **************************************
-  *************   Airsana   ************
-  **************************************
+     Enter 'q' to quit at any time
 
-    Enter 'q' to quit at any time
-
-  Commands:
-  1. Run script with existing profile
-  2. Make new profile
-  3. Run script with test profile
-  Enter a command by digit: 3
-  ```
+   Commands:
+   1. Run script with existing profile
+   2. Make new profile
+   3. Run script with test profile
+   Enter a command by digit: 3
+   ```
 
 5. The script will run and give status updates before exiting:
+   ```
+   Running script with test profile...
+   GETTING latest createdTime...
+   GETTING matches with createdTime later than 2015-06-05T23:08:42.000Z
+   GETTING latest createdTime...
+   SETTING latest createdTime...
+   Task named "Is a luxury stay worth it?" added to workspace
+   Task named "Poolside views" added to workspace
+   Task named "Summer-inspired bites with Sandra Key" added to workspace
+   Done
 
-  ```
-  Running script with test profile...
-  GETTING latest createdTime...
-  GETTING matches with createdTime later than 2015-06-05T23:08:42.000Z
-  GETTING latest createdTime...
-  SETTING latest createdTime...
-  Task named "Is a luxury stay worth it?" added to workspace
-  Task named "Poolside views" added to workspace
-  Task named "Summer-inspired bites with Sandra Key" added to workspace
-  Done
-
-          *****************************
-          ********** Goodbye **********
-          *****************************
-  ```
+           *****************************
+           ********** Goodbye **********
+           *****************************
+   ```
 
 6. Go to your Asana workspace to see that the tasks have been uploaded and assigned to you
 ![picture of Asana workspace](https://github.com/dansjack/airsana/blob/master/images/asana_workspace.png "Asana workspace")
