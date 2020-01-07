@@ -8,7 +8,7 @@ class TableMatcher:
         other data necessary to transfer the data
         :param last_fetched: string. the created time of the row fetched the
         last time the program was ran (or what the user set it to in
-        credentials.json, manually)
+        profiles.json, manually)
         """
         self._profile = profile
         self._match_structure = self._profile['airtable'][

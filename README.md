@@ -66,15 +66,15 @@ pip install airtable-python-wrapper
     ```sh
     git clone https://github.com/dansjack/airsana.git
     ```
-2. Create ```credentials.json``` in ```airsana/``` and make a new profile, or fill in the fields (the ones in all caps) of ```cred_example.json```
+2. Fill in the fields (the ones in all caps) of ```profile_example.json``` or make a new profile in ```profiles.json```
 
- Note: Don't upload any of your sensitive data to Github. Add ```cred_example.json``` to ```.gitignore``` if you intend to use it with your personal data, or copy/paste the example profile into ```credentials.json```
+ Note: Make sure not to upload any of your sensitive data to Github. Add ```profile_example.json``` and ```profiles.json``` to your ```.gitignore``` if you intend to fill them with sensitive info
 
 3. start the program
     ```sh
     python3 airsana
     ```
-4. When prompted, enter ```3``` to run the script from the example profile in ```cred_example.json``` (given you filled in the required fields), or enter ```1``` if you have an existing profile inside ```credentials.json```
+4. When prompted, enter ```3``` to run the script from the example profile in ```profile_example.json``` (given you filled in the required fields), or enter ```1``` if you have an existing profile inside ```profiles.json```.  
 
   ```
   **************************************
@@ -159,6 +159,6 @@ Example profile:
   * api: API key
   * base: base id
   * table: name of a table belonging to the base
-  * latest_createdTime: the created time of the row fetched the last time the program was ran (or what the user set it to in credentials.json, manually)
+  * latest_createdTime: the created time of the row fetched the last time the program was ran (or what the user set it to in profiles.json, manually)
   * filter: the Airtable field to filter the Airtable object by
   * match_structure: structure of the dicts returned by ```TableMatcher.prep_matches()```

@@ -4,7 +4,7 @@ import json
 def get_profile(name, file):
     """
     :param name: profile name
-    :param file: file name e.g. credentials.json
+    :param file: file name e.g. profiles.json
     :return: dict of selected profile
     """
     profile = {}
@@ -28,10 +28,16 @@ def print_profile_names(profile_names):
 
 def get_profile_names(file):
     profile_names = []
-    with open(file) as f:
-        data = json.load(f)
-        for prof in data:
-            profile_names.append(prof['name'])
+    try:
+        with open(file) as f:
+            data = json.load(f)
+            for prof in data:
+                profile_names.append(prof['name'])
+    except FileNotFoundError:
+        with open('profile_example.json') as f:
+            data = json.load(f)
+        with open('profiles.json', 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=4)
     return profile_names
 
 

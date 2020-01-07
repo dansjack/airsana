@@ -9,7 +9,8 @@ from util.profile import *
 
 
 def user_select_profile():
-    file = (Path(__file__).parent / "./credentials.json").resolve()
+    file = (Path(__file__).parent / "./profiles.json").resolve()
+    print(file)
     print("""  
         **************************************
         *************   Airsana   ************
@@ -23,15 +24,20 @@ def user_select_profile():
         run_existing = input(
             'Enter a command by digit: ').lower()
         if run_existing[0] == '1':  # Run with existing profile
-            print('Enter the name of one of the profiles listed')
             names = get_profile_names(file)
-            print_profile_names(names)
-            profile_name = input('profile name: ')
-            if profile_name not in names:
-                print('That profile name does not exist. Returning to '
-                      'previous menu...')
+            if not names:
+                print('No profiles found. Add a profile to profiles.json '
+                      'and re-start the program.')
+                break
             else:
-                return get_profile(profile_name, file)
+                print('Enter the name of one of the profiles listed')
+                print_profile_names(names)
+                profile_name = input('profile name: ')
+                if profile_name not in names:
+                    print('That profile name does not exist. Returning to '
+                          'previous menu...')
+                else:
+                    return get_profile(profile_name, file)
 
         elif run_existing[0] == '2':  # Make new profile
             print('Answer the following 14 questions to create a new profile')
@@ -40,7 +46,7 @@ def user_select_profile():
         elif run_existing[0] == '3':  # Run with example profile
             print('Running script with test profile...')
             return get_profile('TEST PROFILE', (Path(__file__).parent /
-                               "./cred_example.json").resolve())
+                               "./profile_example.json").resolve())
         elif run_existing[0] == 'q':
             break
         else:
@@ -49,9 +55,9 @@ def user_select_profile():
 
 
 def initialize_objects(profile):
-    file = (Path(__file__).parent / "./credentials.json").resolve()
+    file = (Path(__file__).parent / "./profiles.json").resolve()
     if profile['name'] == 'TEST PROFILE':  # ensures proper imports in terminal
-        file = (Path(__file__).parent / "./cred_example.json").resolve()
+        file = (Path(__file__).parent / "./profile_example.json").resolve()
     airtable = Airtable(profile['airtable']['base'],
                         profile['airtable']['table'],
                         api_key=profile['airtable']['api'])

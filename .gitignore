@@ -1,5 +1,5 @@
 .idea/
 venv/
 __pycache__/
-credentials.json
 .DS_Store
+my-profiles.json
