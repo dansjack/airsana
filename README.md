@@ -40,31 +40,35 @@ task in the appropriate Asana workspace
 ## Getting Started
 
 ### Prerequisites
-- Python3
-```sh
-brew install python3
-```
+- Python3  
+
+
+  There are different ways you can install Python. See [The Hitchhikers Guide to Python](https://docs.python-guide.org/starting/installation/) for detailed instructions. If you have Homebrew installed already, you can run the following to install Python3:
+  
+  ```sh
+  $ brew install python
+  ```
 
 - [Asana api](https://github.com/asana/python-asana)
-```sh
-pip install asana
-```
+  ```sh
+  $ pip install asana
+  ```
 
 - [Airtable api](https://github.com/gtalarico/airtable-python-wrapper/blob/master/docs/source/index.rst)
-```sh
-pip install airtable-python-wrapper
-```
+  ```sh
+  $ pip install airtable-python-wrapper
+  ```
 - An [Airtable account](https://airtable.com/). You will need your Content calendar api key and base id. See [Airtable's API documentation](https://airtable.com/api) on how to find this information for your Content calendar
 
  The test script pulls data from the Content production table within the Content calendar base:
- ![picture of Airtable calendar](https://github.com/dansjack/airsana/blob/master/images/airtable_calendar.png "Airtable calendar")
+   ![picture of Airtable calendar](https://github.com/dansjack/airsana/blob/master/images/airtable_calendar.png "Airtable calendar")
 
 - An [Asana account](https://asana.com/). You will need to get your Personal Access Token (PAT), user ID, and workspace name. User ID and workspace name can be found at the following links once logged in, respectively: [https://app.asana.com/api/1.0/users](https://app.asana.com/api/1.0/users), [https://app.asana.com/api/1.0/workspaces](https://app.asana.com/api/1.0/workspaces). You can find instructions on how to get a PAT here: [https://developers.asana.com/docs/#authentication-quick-start](https://developers.asana.com/docs/#authentication-quick-start)
 
 ### Installation and Usage
 1. Clone the repo
     ```sh
-    git clone https://github.com/dansjack/airsana.git
+    $ git clone https://github.com/dansjack/airsana.git
     ```
 2. Fill in the fields (the ones in all caps) of ```profile_example.json``` or make a new profile in ```profiles.json```
 
@@ -72,7 +76,7 @@ pip install airtable-python-wrapper
 
 3. start the program
     ```sh
-    python3 airsana
+    $ python3 airsana
     ```
 4. When prompted, enter ```3``` to run the script from the example profile in ```profile_example.json``` (given you filled in the required fields), or enter ```1``` if you have an existing profile inside ```profiles.json```.  
 
