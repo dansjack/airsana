@@ -1,7 +1,26 @@
 # airsana
 
+## Table of Contents
+* [About](#about)
+  * [Details](#about)
+  * [Development Plans](#development-plans)
+* [Getting Started](#getting-started)
+  * [Prerequisites](#prerequisites)
+  * [Installation and Usage](#installation-and-usage)
+  * [Profiles](#profiles)
+    * [Profile Fields](#profile-fields)
+
+
+
+
+
+
+
+
+
 ## About
-Airsana takes a content calendar object from the Airtable API, finds only the rows assigned to a certain person, and sends that information to the Asana API which creates tasks in that person's Asana workspace.
+Airsana takes a content calendar object from the Airtable API, finds only the rows assigned to a certain person, and sends that information to the Asana API which creates tasks in that person's Asana workspace
+
 This is a work in progress. See below for details on how to run this script with example data, or create your own profile after looking at the example below
 
 ### Details
@@ -10,7 +29,7 @@ the current profile. After getting all rows that match, the TableMatcher makes a
 The Taskmaster object's ```add_task()``` method takes a dict from that list and hands it to the Asana API's ```Client.create_in_workspace()``` method which makes a
 task in the appropriate Asana workspace
 
-### Development plans
+### Development Plans
 - [ ] Improve README
 - [ ] Add test module
 - [ ] Search for and remove any redundancies between project and Airtable/Asana APIs
@@ -18,7 +37,7 @@ task in the appropriate Asana workspace
   - [ ] profile maker walkthrough
   - [ ] exception handling for improper inputs
 
-## Getting started
+## Getting Started
 
 ### Prerequisites
 - Python3
@@ -35,14 +54,14 @@ pip install asana
 ```sh
 pip install airtable-python-wrapper
 ```
-- An [Airtable account](https://airtable.com/). You will need your Content calendar api key and base id. See [Airtable's API documentation](https://airtable.com/api) on how to find this information for your Content calendar.
+- An [Airtable account](https://airtable.com/). You will need your Content calendar api key and base id. See [Airtable's API documentation](https://airtable.com/api) on how to find this information for your Content calendar
 
  The test script pulls data from the Content production table within the Content calendar base:
  ![picture of Airtable calendar](https://github.com/dansjack/airsana/blob/master/images/airtable_calendar.png "Airtable calendar")
 
 - An [Asana account](https://asana.com/). You will need to get your Personal Access Token (PAT), user ID, and workspace name. User ID and workspace name can be found at the following links once logged in, respectively: [https://app.asana.com/api/1.0/users](https://app.asana.com/api/1.0/users), [https://app.asana.com/api/1.0/workspaces](https://app.asana.com/api/1.0/workspaces). You can find instructions on how to get a PAT here: [https://developers.asana.com/docs/#authentication-quick-start](https://developers.asana.com/docs/#authentication-quick-start)
 
-### Installation & Usage
+### Installation and Usage
 1. Clone the repo
     ```sh
     git clone https://github.com/dansjack/airsana.git
@@ -127,7 +146,7 @@ Example profile:
     }
 }
 ```
-##### profile fields
+##### Profile Fields
 * name: Name of this profile   
 * asana: Asana account details
   * name: username
