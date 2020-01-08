@@ -2,14 +2,11 @@ from pathlib import Path
 from util.profile import *
 
 
-def user_select_profile(file):
-    print("""  
-        **************************************
-        *************   Airsana   ************
-        **************************************
-        
-        Enter 'q' to quit at any time
-        """)
+def main_loop(file):
+    """
+    :param file: path of file containing a list of profiles
+    :return: dict. The profile selected by the user
+    """
     while True:
         print('Commands:\n1. Run script with existing profile\n2. Make new '
               'profile\n3. Run script with test profile')

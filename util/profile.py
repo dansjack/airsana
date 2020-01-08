@@ -5,7 +5,7 @@ def get_profile(name, file):
     """
     :param name: profile name
     :param file: file name e.g. profiles.json
-    :return: dict of selected profile
+    :return: dict. profile with :param name at :param file
     """
     profile = {}
     with open(file) as f:
@@ -21,12 +21,21 @@ def get_profile(name, file):
     return profile
 
 
-def print_profile_names(profile_names):
-    for name in profile_names:
+def print_profile_names(list_of_names):
+    """
+    Prints all the profile names in a file
+    :param list_of_names: List<String>. List of all profiles in a file
+    :return: void.
+    """
+    for name in list_of_names:
         print('- {}'.format(name))
 
 
 def get_profile_names(file):
+    """
+    :param file: path to file containing profiles
+    :return: List<String>. A list of profile names
+    """
     profile_names = []
     try:
         with open(file) as f:

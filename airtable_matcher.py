@@ -3,7 +3,7 @@ class TableMatcher:
         """
         Takes an Airtable object and filters the rows by a filter value and
         by createdTime. It then creates a list of dicts to send to Asana
-        :param airtable: Airtable object. from airtable API
+        :param airtable: Airtable object. from the Airtable API
         :param profile: dict. a profile containing the user's credentials and
         other data necessary to transfer the data
         :param last_fetched: string. the created time of the row fetched the
@@ -15,10 +15,14 @@ class TableMatcher:
             'match_structure'].values()
         self._last_fetched = last_fetched
         self._airtable = airtable
-        self._filtered_table = self._get_matches()
+        self._all_matches = self._get_matches()
 
     def _get_matches(self):
-        """Filters Airtable.get_all() by assignee passed to Class """
+        """
+        Filters Airtable.get_all() by self._profile's filter and filter
+        value
+        :return: List<Dict>. List of dict matches
+        """
         print('GETTING matches with createdTime later than {}'.format(
             self._last_fetched))
         return [row for row in self._airtable.search(
@@ -27,8 +31,12 @@ class TableMatcher:
             row['createdTime'] > self._last_fetched]
 
     def prep_matches(self):
-        if self._filtered_table:
-            return [self.prep_match_helper(row) for row in self._filtered_table]
+        """
+        List of matches ready to get pushed to an Asana workspace
+        :return: List<Dict>. List of matches
+        """
+        if self._all_matches:
+            return [self.prep_match_helper(row) for row in self._all_matches]
         return -1
 
     def prep_match_helper(self, table_row):
@@ -51,5 +59,8 @@ class TableMatcher:
         return match_row
 
     @property
-    def filtered_table(self):
-        return self._filtered_table
+    def all_matches(self):
+        """
+        :return: List<Dict> All raw matches from an Airtable object
+        """
+        return self._all_matches
