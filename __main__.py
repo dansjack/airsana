@@ -7,6 +7,7 @@ from asana_taskmaster import Taskmaster
 from util.date import *
 
 
+# TODO: Consider moving the notes field to match structure in Profile
 def assign_rows(taskmaster, table_rows, note_fields):
     """
     Assigns rows in :param table_rows to the Asana workspace known by :param
@@ -74,11 +75,11 @@ if __name__ == '__main__':
 
         Enter 'q' to quit at any time
         """)
-    file = (Path(__file__).parent / "./my-profiles.json").resolve()
-    profile = main_loop(file)
-    if profile is not None:
-        nf_list = profile['asana']['note_fields']
-        m, t = initialize_objects(profile, file)
+    fpath = (Path(__file__).parent / "./profiles.json").resolve()
+    prof = main_loop(fpath)
+    if prof is not None:
+        nf_list = prof['asana']['note_fields']
+        m, t = initialize_objects(prof, fpath)
         prepped_matches = m.prep_matches()
         if m is not None:
             assign_rows(t, prepped_matches, nf_list)

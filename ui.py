@@ -41,6 +41,3 @@ def main_loop(file):
         else:
             print("Did not understand command. Please enter 'y', 'n', "
                   "or 'q'...")
-
-
-
