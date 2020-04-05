@@ -49,7 +49,7 @@ def assign_rows_helper(note_fields, table_row):
 
 def initialize_objects(profile, file):
     """
-    Instatiates objects needed for the program with profile data
+    Instantiates objects needed for the program with profile data
     :param profile: profile to pull data from/send to
     :param file: file path of the profile
     :return: TableMatcher instance, Taskmaster instance

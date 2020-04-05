@@ -6,8 +6,8 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-asana = "*"
 airtable-python-wrapper = "*"
+asana = "*"
 
 [requires]
 python_version = "3.7"
