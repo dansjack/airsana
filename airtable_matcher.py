@@ -12,7 +12,7 @@ class TableMatcher:
         """
         self._profile = profile
         self._match_structure = self._profile['airtable'][
-            'match_structure'].values()
+            'match_structure']
         self._last_fetched = last_fetched
         self._airtable = airtable
         self._all_matches = self._get_matches()
@@ -25,10 +25,14 @@ class TableMatcher:
         """
         print('GETTING matches with createdTime later than {}'.format(
             self._last_fetched))
+        view = ''
+        if self._profile['airtable']['view']:
+            view = self._profile['airtable']['view']
+
         return [row for row in self._airtable.search(
             self._profile['airtable']['filter'],
-            self._profile['airtable']['filter_value']) if
-            row['createdTime'] > self._last_fetched]
+            self._profile['airtable']['filter_value'],
+            view=view) if row['createdTime'] > self._last_fetched]
 
     def prep_matches(self):
         """

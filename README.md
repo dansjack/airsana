@@ -126,22 +126,23 @@ Example profile:
         "id": "ASANA ID",
         "workspace_name": "ASANA WORKSPACE NAME",
         "note_fields": [
-            "section",
-            "status"
+            "Section",
+            "Status"
         ]
     },
     "airtable": {
         "api": "AIRTABLE API",
         "base": "AIRTABLE BASE",
         "table": "Content production",
+        "view": "",
         "latest_createdTime": "2015-06-05T23:08:42.000Z",
         "filter": "Author",
         "filter_value": "Cameron Toth",
-        "match_structure": {
-            "title": "Headline",
-            "section": "Section",
-            "status": "Status"
-        }
+        "match_structure": [
+            "Headline",
+            "Section",
+            "Status"
+        ]
     }
 }
 ```
@@ -158,6 +159,7 @@ Example profile:
   * api: API key
   * base: base id
   * table: name of a table belonging to the base
+  * view: (optional) The view of the table you want to pull your data from
   * latest_createdTime: the created time of the row fetched the last time the program was ran (or what the user set it to in profiles.json, manually)
   * filter: the Airtable field to filter the Airtable object by
-  * match_structure: structure of the dicts returned by ```TableMatcher.prep_matches()```
+  * match_structure: structure of the dicts returned by ```TableMatcher.prep_matches()```. These values represent the columns in your Airtable calendar
