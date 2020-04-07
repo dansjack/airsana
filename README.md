@@ -155,11 +155,11 @@ Example profile:
   * workspace_name: Name of user's workspace
   * note_fields: list of the Airtable object fields you want to send to Asana
 * airtable: Airtable account details
-  * filter_value: value of the filter field
   * api: API key
   * base: base id
   * table: name of a table belonging to the base
   * view: (optional) The view of the table you want to pull your data from
   * latest_createdTime: the created time of the row fetched the last time the program was ran (or what the user set it to in profiles.json, manually)
-  * filter: the Airtable field to filter the Airtable object by
+  * filter: (optional) the Airtable field to filter the Airtable object by. If none, the Airtable object returns all matches in the date range
+  * filter_value: (optional) value of the filter field
   * match_structure: structure of the dicts returned by ```TableMatcher.prep_matches()```. These values represent the columns in your Airtable calendar

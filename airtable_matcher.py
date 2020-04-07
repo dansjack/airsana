@@ -2,7 +2,8 @@ class TableMatcher:
     def __init__(self, airtable, profile, last_fetched):
         """
         Takes an Airtable object and filters the rows by a filter value and
-        by createdTime. It then creates a list of dicts to send to Asana
+        by createdTime. It then creates a list of dicts to send to an Asana
+        workspace
         :param airtable: Airtable object. from the Airtable API
         :param profile: dict. a profile containing the user's credentials and
         other data necessary to transfer the data
@@ -11,16 +12,15 @@ class TableMatcher:
         profiles.json, manually)
         """
         self._profile = profile
-        self._match_structure = self._profile['airtable'][
-            'match_structure']
+        self._match_structure = self._profile['airtable']['match_structure']
         self._last_fetched = last_fetched
         self._airtable = airtable
         self._all_matches = self._get_matches()
 
     def _get_matches(self):
         """
-        Filters Airtable.get_all() by self._profile's filter and filter
-        value
+        Returns a list from either Airtable.get_all() or Airtable.search()
+        by self._profile's filter and filter value
         :return: List<Dict>. List of dict matches
         """
         print('GETTING matches with createdTime later than {}'.format(
@@ -29,10 +29,14 @@ class TableMatcher:
         if self._profile['airtable']['view']:
             view = self._profile['airtable']['view']
 
-        return [row for row in self._airtable.search(
-            self._profile['airtable']['filter'],
-            self._profile['airtable']['filter_value'],
-            view=view) if row['createdTime'] > self._last_fetched]
+        if 'filter' in self._profile['airtable']:
+            return [row for row in
+                    self._airtable.search(self._profile['airtable']['filter'],
+                    self._profile['airtable']['filter_value'],
+                    view=view) if row['createdTime'] > self._last_fetched]
+        else:
+            return [row for row in self._airtable.get_all(view=view) if
+                    row['createdTime'] > self._last_fetched]
 
     def prep_matches(self):
         """
