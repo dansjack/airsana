@@ -8,8 +8,8 @@ def main_loop(file):
     :return: dict. The profile selected by the user
     """
     while True:
-        print('Commands:\n1. Run script with existing profile\n2. Make new '
-              'profile\n3. Run script with test profile')
+        print('Commands:\n1. Run script with existing profile\n2. Add/update/'
+              'delete profile\n3. Run script with test profile')
         run_existing = input(
             'Enter a command by digit: ').lower()
         if run_existing[0] == '1':  # Run with existing profile
@@ -29,9 +29,11 @@ def main_loop(file):
                     return get_profile(profile_name, file)
 
         elif run_existing[0] == '2':  # Make new profile
-            print('Answer the following 14 questions to create a new profile')
-            make_profile(file)
-            print('New profile created')
+            print(f'\nUNDER CONSTRUCTION - Currently, the fastest way to '
+                  f'edit a profile is to manipulate it directly within'
+                  f' /profiles.json\n')
+            # make_profile(file)
+            # print('New profile created')
         elif run_existing[0] == '3':  # Run with example profile
             print('Running script with test profile...')
             return get_profile('TEST PROFILE', (Path(__file__).parent /
